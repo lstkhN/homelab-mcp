@@ -1,0 +1,29 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "homelab-mcp"
+version = "0.1.0"
+description = "Read-only, allowlisted Linux homelab diagnostics MCP server"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Homelab MCP contributors"}]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+]
+dependencies = ["mcp>=1.2.0,<2"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+homelab-mcp = "homelab_mcp.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/homelab_mcp"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

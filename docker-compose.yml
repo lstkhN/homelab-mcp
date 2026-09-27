@@ -1,0 +1,36 @@
+services:
+  homelab-mcp:
+    build: .
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=16m
+    environment:
+      HOMELAB_ALLOWED_SERVICES: ${HOMELAB_ALLOWED_SERVICES:-ssh.service,nginx.service}
+      HOMELAB_ALLOWED_LOGS: /host/logs/syslog,/host/logs/auth.log
+      HOMELAB_ALLOWED_DISKS: /host/root,/host/home
+      HOMELAB_COMMAND_TIMEOUT_SECONDS: ${HOMELAB_COMMAND_TIMEOUT_SECONDS:-5}
+      HOMELAB_MAX_OUTPUT_BYTES: ${HOMELAB_MAX_OUTPUT_BYTES:-16384}
+      HOMELAB_MAX_LOG_LINES: ${HOMELAB_MAX_LOG_LINES:-200}
+      HOMELAB_AUDIT_LOG: /audit/homelab-mcp.jsonl
+    volumes:
+      # Adjust source paths to the host. All diagnostics mounts are read-only.
+      - type: bind
+        source: ${HOMELAB_HOST_LOG_DIR:-/var/log}
+        target: /host/logs
+        read_only: true
+      - type: bind
+        source: ${HOMELAB_HOST_ROOT:-/}
+        target: /host/root
+        read_only: true
+      - type: bind
+        source: ${HOMELAB_HOST_HOME:-/home}
+        target: /host/home
+        read_only: true
+      # Pre-create this directory writable by UID 10001 if persistent audit is needed.
+      - type: bind
+        source: ${HOMELAB_AUDIT_DIR:-./audit}
+        target: /audit
