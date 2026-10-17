@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 180" role="img" aria-labelledby="title desc">
+  <title id="title">homelab-mcp logo</title>
+  <desc id="desc">Shield and server icon with the homelab-mcp project name</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#0f172a"/><stop offset="1" stop-color="#172554"/></linearGradient>
+    <linearGradient id="accent" x1="0" x2="1"><stop stop-color="#22d3ee"/><stop offset="1" stop-color="#60a5fa"/></linearGradient>
+  </defs>
+  <rect width="640" height="180" rx="28" fill="url(#bg)"/>
+  <path d="M92 25 143 43v39c0 34-21 57-51 72-30-15-51-38-51-72V43z" fill="none" stroke="url(#accent)" stroke-width="8"/>
+  <rect x="62" y="61" width="60" height="13" rx="6" fill="#e0f2fe"/><rect x="62" y="84" width="60" height="13" rx="6" fill="#bae6fd"/><rect x="62" y="107" width="60" height="13" rx="6" fill="#7dd3fc"/>
+  <circle cx="111" cy="67" r="3" fill="#22d3ee"/><circle cx="111" cy="90" r="3" fill="#22d3ee"/><circle cx="111" cy="113" r="3" fill="#22d3ee"/>
+  <text x="180" y="94" fill="#f8fafc" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="42" font-weight="700">homelab-mcp</text>
+  <text x="184" y="128" fill="#bae6fd" font-family="system-ui, sans-serif" font-size="18">read-only Linux diagnostics</text>
+</svg>

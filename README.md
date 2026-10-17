@@ -1,4 +1,20 @@
-# homelab-mcp
+<p align="center">
+  <img src="assets/logo.svg" alt="homelab-mcp — read-only Linux diagnostics" width="640">
+</p>
+
+<p align="center">
+  <a href="https://github.com/lstkhN/homelab-mcp/actions"><img src="https://img.shields.io/github/actions/workflow/status/lstkhN/homelab-mcp/ci.yml?label=CI" alt="CI status"></a>
+  <a href="https://github.com/lstkhN/homelab-mcp/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-22c55e.svg" alt="MIT license"></a>
+  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/python-3.10%2B-3776ab.svg" alt="Python 3.10 or newer"></a>
+  <a href="https://modelcontextprotocol.io/"><img src="https://img.shields.io/badge/MCP-stdio-0ea5e9.svg" alt="MCP stdio"></a>
+</p>
+
+<h1 align="center">Безопасная диагностика homelab через MCP</h1>
+
+<p align="center">
+  Read-only MCP-сервер для Linux: allowlist, bounded output, audit и никаких
+  автоматических изменений на хосте.
+</p>
 
 `homelab-mcp` — MCP-сервер для безопасной диагностики небольшого домашнего
 Linux-сервера (homelab). Он подключается к MCP-клиенту через **stdio** и
@@ -26,6 +42,27 @@ Linux-сервера (homelab). Он подключается к MCP-клиен�
 Все внешние процессы запускаются с `shell=False`, ограничением времени и
 ограничением размера вывода. Пути нормализуются перед сравнением с allowlist:
 обход каталогов, соседние файлы и неразрешённые symlink-цели отклоняются.
+
+## Как это выглядит
+
+Ниже — примеры интерфейса и ответов. Значения на иллюстрациях демонстрационные:
+на реальном хосте ответ зависит от настроек allowlist и состояния системы.
+
+<p align="center">
+  <img src="assets/health-demo.svg" alt="Пример ответа инструмента health в терминале" width="900">
+</p>
+
+<p align="center">
+  <img src="assets/incident-demo.svg" alt="Пример отчёта incident_report с этапами evidence, hypothesis и plan" width="900">
+</p>
+
+## Почему проект заслуживает внимания
+
+- **Безопасность по умолчанию:** только фиксированные read-only команды и точные allowlist.
+- **Понятные выводы:** отчёт разделяет факты, гипотезы, уверенность и план.
+- **Без скрытой автоматизации:** remediation-предложения возвращаются текстом и требуют человека.
+- **Готовность к эксплуатации:** таймауты, лимиты вывода, JSONL-аудит и Docker hardening.
+- **Прозрачность:** вся критичная логика небольшая, тестируемая и описана в репозитории.
 
 ## Требования
 
